@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+   "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+<package name="default" extends="struts-default">
+
+<interceptors>
+	<interceptor name="sessionCheckInterceptor" class="com.attendance.interceptor.SessionCheckInterceptor"></interceptor>
+	<interceptor-stack name="authStack">
+		<interceptor-ref name="sessionCheckInterceptor"></interceptor-ref>
+		<interceptor-ref name="defaultStack"></interceptor-ref>
+	</interceptor-stack>
+</interceptors>
+
+<default-interceptor-ref name="authStack"></default-interceptor-ref>
+
+<global-results>
+	<result name="login">/WEB-INF/view/login.jsp</result>
+	<result name="admin" type="redirectAction">admin</result>
+</global-results>
+	
+	<action name="log_attendance" class="com.attendance.struts2.LogAttendance">
+		<result name="success">/WEB-INF/view/attendance_logging.jsp</result>
+		<result name="failure">/WEB-INF/view/attendance_logging.jsp</result>
+		<result name="input">/WEB-INF/view/attendance_logging.jsp</result>
+	</action>
+	
+	<action name="cancel_leave" class="com.attendance.struts2.LeaveCancellation">
+		<result name="success">/WEB-INF/view/leave_status.jsp</result>
+		<result name="failure">/WEB-INF/view/leave_status.jsp</result>
+		<result name="input">/WEB-INF/view/leave_status.jsp</result>
+	</action>
+	
+	<action name="remove_holiday" class="com.attendance.struts2.RemoveHoliday">
+		<result name="success">/WEB-INF/view/view_holiday.jsp</result>
+		<result name="failure">/WEB-INF/view/view_holiday.jsp</result>
+		<result name="input">/WEB-INF/view/view_holiday.jsp</result>
+	</action>
+	
+	<action name="admin_cancel_leave" class="com.attendance.struts2.LeaveCancellation">
+		<result name="success">/WEB-INF/view/approved_leaves.jsp</result>
+		<result name="failure">/WEB-INF/view/approved_leaves.jsp</result>
+		<result name="input">/WEB-INF/view/approved_leaves.jsp</result>
+	</action>
+	
+	<action name="admin_approval" class="com.attendance.struts2.AdminApproval" method="approve">
+		<result name="success">/WEB-INF/view/pending_leave_approvals.jsp</result>
+		<result name="failure">/WEB-INF/view/pending_leave_approvals.jsp</result>
+		<result name="input">/WEB-INF/view/pending_leave_approvals.jsp</result>
+	</action>
+	
+	<action name="admin_rejection" class="com.attendance.struts2.AdminApproval" method="reject">
+		<result name="success">/WEB-INF/view/pending_leave_approvals.jsp</result>
+		<result name="failure">/WEB-INF/view/pending_leave_approvals.jsp</result>
+		<result name="input">/WEB-INF/view/pending_leave_approvals.jsp</result>
+	</action>
+	
+	<action name="approve" class="com.attendance.struts2.LeaveApproval" method="approve">
+		<result name="success">/WEB-INF/view/pending_leave_approvals.jsp</result>
+		<result name="failure">/WEB-INF/view/pending_leave_approvals.jsp</result>
+		<result name="input">/WEB-INF/view/pending_leave_approvals.jsp</result>
+	</action>
+	
+	<action name="edit_profile" class="com.attendance.struts2.EditData">
+		<result name="success">/WEB-INF/view/employee_profile.jsp</result>
+		<result name="failure">/WEB-INF/view/employee_profile.jsp</result>
+		<result name="input">/WEB-INF/view/employee_profile.jsp</result>
+	</action>
+	
+	<action name="reject" class="com.attendance.struts2.LeaveApproval" method="reject">
+		<result name="success">/WEB-INF/view/pending_leave_approvals.jsp</result>
+		<result name="failure">/WEB-INF/view/pending_leave_approvals.jsp</result>
+		<result name="input">/WEB-INF/view/pending_leave_approvals.jsp</result>
+	</action>
+	
+	<action name="edit_employee" class="com.attendance.struts2.EditEmployeeDetails">
+		<result name="success">/WEB-INF/view/employee_master.jsp</result>
+		<result name="failure">/WEB-INF/view/employee_master.jsp</result>
+		<result name="input">/WEB-INF/view/employee_master.jsp</result>
+	</action>
+	
+	<action name="back_dated_attendance" class="com.attendance.struts2.BackDatedAttendanceMarking">
+		<result name="success">/WEB-INF/view/mark_attendance.jsp</result>
+		<result name="failure">/WEB-INF/view/mark_attendance.jsp</result>
+		<result name="input">/WEB-INF/view/mark_attendance.jsp</result>
+	</action>
+	
+	<action name="login" class="com.attendance.struts2.Login">
+		<result name="success" type="redirectAction">welcome</result>
+		<result name="failure">/WEB-INF/view/login.jsp</result>
+		<result name="input">/WEB-INF/view/login.jsp</result>
+	</action>
+	
+	<action name="leave_request" class="com.attendance.struts2.LeaveRequest">
+		<result name="success">/WEB-INF/view/leave_application.jsp</result>
+		<result name="failure">/WEB-INF/view/leave_application.jsp</result>
+		<result name="input">/WEB-INF/view/leave_application.jsp</result>
+	</action>
+	
+	<action name="new_employee" class="com.attendance.struts2.AdminMaster">
+		<result name="success">/WEB-INF/view/new_registration.jsp</result>
+	</action>
+	
+	<action name="register_employee" class="com.attendance.struts2.NewRegistration">
+		<result name="success">/WEB-INF/view/new_registration.jsp</result>
+		<result name="failure">/WEB-INF/view/new_registration.jsp</result>
+		<result name="input">/WEB-INF/view/new_registration.jsp</result>
+	</action>
+	
+	<action name="add_holiday" class="com.attendance.struts2.AddHoliday">
+		<result name="success">/WEB-INF/view/holiday_master.jsp</result>
+		<result name="failure">/WEB-INF/view/holiday_master.jsp</result>
+		<result name="input">/WEB-INF/view/holiday_master.jsp</result>
+	</action>
+	
+	<action name="reset_employee_password" class="com.attendance.struts2.ResetEmployeePassword">
+		<result name="success">/WEB-INF/view/password_reset.jsp</result>
+		<result name="failure">/WEB-INF/view/password_reset.jsp</result>
+		<result name="input">/WEB-INF/view/password_reset.jsp</result>
+	</action>
+	
+	<action name="generate" class="com.attendance.struts2.Generate">
+		<result name="success" type="stream">
+			<param name="contentType">application/pdf</param>
+        	<param name="inputName">stream</param>
+        	<param name="contentDisposition">inline;filename="report.pdf"</param>
+        	<param name="bufferSize">1024</param>
+		</result>
+		<result name="failure" type="redirectAction">report</result>
+	</action>
+	
+	<action name="manager_leave_report" class="com.attendance.struts2.GenerateLeaveReport">
+		<result name="success" type="stream">
+			<param name="contentType">application/pdf</param>
+        	<param name="inputName">stream</param>
+        	<param name="contentDisposition">inline;filename="report.pdf"</param>
+        	<param name="bufferSize">1024</param>
+		</result>
+		<result name="failure" type="redirectAction">report</result>
+	</action>
+	
+	<action name="admin_leave_report" class="com.attendance.struts2.EntireLeaveReport">
+		<result name="success" type="stream">
+			<param name="contentType">application/pdf</param>
+        	<param name="inputName">stream</param>
+        	<param name="contentDisposition">inline;filename="report.pdf"</param>
+        	<param name="bufferSize">1024</param>
+		</result>
+		<result name="failure" type="redirectAction">report</result>
+	</action>
+	
+	<action name="report" class="com.attendance.struts2.AdminMaster">
+		<result name="success">/WEB-INF/view/generate_report.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	<action name="password_reset" class="com.attendance.struts2.AdminMaster">
+		<result name="success">/WEB-INF/view/password_reset.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	<action name="view_admin_leave_report" class="com.attendance.struts2.AdminMaster">
+		<result name="success">/WEB-INF/view/admin_leave_report.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	
+	<action name="view_manager_leave_report" class="com.attendance.struts2.View">
+		<result name="success">/WEB-INF/view/manager_leave_report.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	<action name="view_employee_leave_report" class="com.attendance.struts2.View">
+		<result name="success">/WEB-INF/view/employee_leave_report.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	<action name="leaves_approved" class="com.attendance.struts2.View">
+		<result name="success">/WEB-INF/view/approved_leaves.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	
+	
+	<action name="view_holidays" class="com.attendance.struts2.View">
+		<result name="success">/WEB-INF/view/view_holiday.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	<action name="employee_profile" class="com.attendance.struts2.View">
+		<result name="success">/WEB-INF/view/employee_profile.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	<action name="change_password" class="com.attendance.struts2.NonAdminView">
+		<result name="success">/WEB-INF/view/change_password.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	<action name="leave_status" class="com.attendance.struts2.NonAdminView">
+		<result name="success">/WEB-INF/view/leave_status.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	<action name="check_leave_count" class="com.attendance.struts2.NonAdminView">
+		<result name="success">/WEB-INF/view/leave_count.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	<action name="apply_leave" class="com.attendance.struts2.NonAdminView">
+		<result name="success">/WEB-INF/view/leave_application.jsp</result>
+		<result name="input">/WEB-INF/view/leave_application.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	<action name="change_admin_password" class="com.attendance.struts2.AdminMaster">
+		<result name="success">/WEB-INF/view/admin_password_change.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	<action name="holiday_master" class="com.attendance.struts2.AdminMaster">
+		<result name="success">/WEB-INF/view/holiday_master.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	<action name="pending_leave_approvals" class="com.attendance.struts2.View">
+		<result name="success">/WEB-INF/view/pending_leave_approvals.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	<action name="password_change_success" class="com.attendance.struts2.View">
+		<result name="success">/WEB-INF/view/password_change_success.jsp</result>
+	</action>
+	
+	<action name="view_dept_attendance" class="com.attendance.struts2.View">
+		<result name="success">/WEB-INF/view/manager_attendance_report.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	<action name="welcome" class="com.attendance.struts2.Welcome">
+		<result name="success">/WEB-INF/view/welcome.jsp</result>
+		<result name="admin">/WEB-INF/view/admin_master.jsp</result>
+	</action>
+	
+	<action name="admin" class="com.attendance.struts2.AdminMaster">
+		<result name="success">/WEB-INF/view/admin_master.jsp</result>
+	</action>
+	
+	<action name="attendance_logging" class="com.attendance.struts2.NonAdminView">
+		<result name="success">/WEB-INF/view/attendance_logging.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	<action name="backdated_marking" class="com.attendance.struts2.AdminMaster">
+		<result name="success">/WEB-INF/view/mark_attendance.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	<action name="employee_master" class="com.attendance.struts2.AdminMaster">
+		<result name="success">/WEB-INF/view/employee_master.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	<action name="delete_employee" class="com.attendance.struts2.EmployeeDeletion">
+		<result name="success" type="redirectAction">employee_master</result>
+	</action>
+	
+	<action name="update_password" class="com.attendance.struts2.PasswordChange">
+		<result name="success" type="redirectAction">password_change_success</result>
+		<result name="failure">/WEB-INF/view/change_password.jsp</result>
+		<result name="input">/WEB-INF/view/change_password.jsp</result>
+	</action>
+	
+	<action name="update_admin_password" class="com.attendance.struts2.AdminPasswordChange">
+		<result name="success" type="redirectAction">password_change_success</result>
+		<result name="failure">/WEB-INF/view/admin_password_change.jsp</result>
+		<result name="input">/WEB-INF/view/admin_password_change.jsp</result>
+	</action>
+	
+	<action name="view_attendance" class="com.attendance.struts2.NonAdminView">
+		<result name="success">/WEB-INF/view/employee_attendance_report.jsp</result>
+		<result name="failure" type="redirectAction">welcome</result>
+	</action>
+	
+	
+</package>
+<constant name="struts.action.excludePattern" value="/logout.do"/>
+
+</struts>

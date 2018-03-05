@@ -1,0 +1,9 @@
+@CHARSET "ISO-8859-1";
+
+body{
+	font-size:17px;
+	font-family: 'Raleway', sans-serif;
+}
+td, th {
+    padding: 8px;
+}
