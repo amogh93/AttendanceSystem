@@ -1,7 +1,7 @@
 # AttendanceSystem
 Java Web Application<br />
-<li>
-  <ul>Framework used- Struts2.x</ul>
-  <ul>ORM- Hibernate</ul>
-  <ul>RDBMS- MySQL</ul>
-</li>
+<ul>
+  <li>Framework used- Struts2.x</li>
+  <li>ORM- Hibernate</li>
+  <li>RDBMS- MySQL</li>
+</ul>
