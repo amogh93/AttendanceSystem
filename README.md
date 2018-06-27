@@ -1,5 +1,5 @@
 # AttendanceSystem
-Java Web Application<br />
+Java Web Application using Struts2x<br />
 <ul>
   <li>Framework used- Struts2.x</li>
   <li>ORM- Hibernate</li>
